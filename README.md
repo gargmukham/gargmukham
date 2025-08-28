@@ -1,8 +1,21 @@
-## Hi there 👋
+name: Generate Snake Animation
 
-- 🔭 I’m currently working on Graphic Designing
-- 🌱 I’m currently learning python & Java 
-- 👯 I’m looking to collaborate on the Artificial intelligence and machine learning
-- 🤔 I’m looking for help with Graphic Designing
-- 📫 How to reach me:gargmukhanubhav@gmail.com
+on:
+  schedule: 
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Platane/snk@v3
+        with:
+          github_user_name: gargmukham
+          outputs: dist/github-contribution-grid-snake.svg
+
+      - name: Push to output branch
+        uses: actions/upload-artifact@v3
+        with:
+          name: snake
+          path: dist
